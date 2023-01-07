@@ -92,7 +92,7 @@ public class GameWindow extends JPanel implements Runnable {
         
         Graphics2D g2 = (Graphics2D)g;
 
-        player.draw(g2);
+        player.changeSprite(g2);
 
         g2.dispose();
     }
