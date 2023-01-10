@@ -7,29 +7,38 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import entity.Player;
+import gameTile.gametileManager;
 
 public class GameWindow extends JPanel implements Runnable {
     
    public final int tileSizeOrginal = 16;
     final int scale = 3;
 
-   public final int tileSize = tileSizeOrginal * scale;
-    final int columns = 16;
-    final int rows = 12;
-    final int width  = tileSize * columns;
-    final int height = tileSize * rows;
+    public final int tileSize = tileSizeOrginal * scale;
+    public final int columns = 16;
+    public final int rows = 12;
+    public final int width  = tileSize * columns;
+    public final int height = tileSize * rows;
+
+    //Settings for WORLD MAP
+    public final int maxColumnsWorld = 50;
+    public final int maxRowsWorld = 50;
+    public final int widthOfWorld = tileSize * maxColumnsWorld;
+    public final int heightOfWorld = tileSize * maxRowsWorld;
 
     //fps
     int fps = 60;
+    
 
     //player information
     public int playerX = 100;
     public int playerY = 100;
     public int playerspeed = 4;
 
+    gametileManager gametileM = new gametileManager(this);
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
-    Player player = new Player(this, keyH);
+    public Player player = new Player(this, keyH);
 
     public GameWindow() {
 
@@ -91,6 +100,8 @@ public class GameWindow extends JPanel implements Runnable {
         super.paintComponent(g);
         
         Graphics2D g2 = (Graphics2D)g;
+
+        gametileM.createTile(g2);
 
         player.changeSprite(g2);
 

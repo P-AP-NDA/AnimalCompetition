@@ -13,11 +13,16 @@ public class Player extends Entity {
     GameWindow gameWindow;
     KeyHandler keyH;
 
+    public final int screenX;
+    public final int screenY;
 
     public Player(GameWindow gameWindow, KeyHandler keyH) {
 
         this.gameWindow = gameWindow;
         this.keyH = keyH;
+
+        screenX = gameWindow.width/2 - (gameWindow.tileSize/2);
+        screenY = gameWindow.height/2 - (gameWindow.tileSize/2);
 
         defaultValues();
         getImageOfPlayer();
@@ -25,8 +30,8 @@ public class Player extends Entity {
 
     public void defaultValues() {
 
-        xCoord = 100;
-        yCoord = 100;
+        xCoordOfWorld = gameWindow.tileSize * 23;
+        yCoordOfWorld = gameWindow.tileSize * 21;
         speedOf = 4;
         directionOf = "down";
     }
@@ -65,25 +70,25 @@ public class Player extends Entity {
 
         if(keyH.upPressed == true) {
 
-            yCoord -= speedOf;
+            yCoordOfWorld -= speedOf;
             directionOf = "up";
             keyPressed = true;
             
         }else if(keyH.downPressed == true) {
 
-            yCoord += speedOf;
+            yCoordOfWorld += speedOf;
             directionOf = "down";
             keyPressed = true;
 
         }else if(keyH.leftPressed == true) {
 
-            xCoord -= speedOf;
+            xCoordOfWorld -= speedOf;
             directionOf = "left";
             keyPressed = true;
 
         }else if(keyH.rightPressed == true) {
             
-            xCoord += speedOf;
+            xCoordOfWorld += speedOf;
             directionOf = "right";
             keyPressed = true;
 
@@ -185,7 +190,7 @@ public class Player extends Entity {
             
         }
 
-        g2.drawImage(sprite, xCoord, yCoord, gameWindow.tileSize, gameWindow.tileSize, null);
+        g2.drawImage(sprite, screenX, screenY, gameWindow.tileSize, gameWindow.tileSize, null);
         
     }
 
