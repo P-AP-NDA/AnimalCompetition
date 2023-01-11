@@ -26,7 +26,7 @@ public class gametileManager {
         tile = new gametile[10];
         mapTileNum = new int[gameWindow.maxColumnsWorld][gameWindow.maxRowsWorld];
         getTileImage();
-        mapLoading("/res/gameMaps/map01.txt");
+        mapLoading("/res/gameMaps/mapofWorld1.txt");
     }
 
 
@@ -42,6 +42,9 @@ public class gametileManager {
             
             tile[2] = new gametile();
             tile[2].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/tree.png"));
+
+            tile[3] = new gametile();
+            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/rock.png"));
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -109,7 +112,7 @@ public class gametileManager {
             worldColumns++;
           
 
-            if(worldColumns == gameWindow.columns) { 
+            if(worldColumns == gameWindow.maxColumnsWorld) { 
                 worldColumns = 0;
                 worldRow++;
           

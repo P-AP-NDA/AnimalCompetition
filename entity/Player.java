@@ -32,8 +32,9 @@ public class Player extends Entity {
 
         xCoordOfWorld = gameWindow.tileSize * 23;
         yCoordOfWorld = gameWindow.tileSize * 21;
-        speedOf = 4;
+        speedOf = 6;
         directionOf = "down";
+
     }
 
     public void getImageOfPlayer() {
@@ -67,6 +68,7 @@ public class Player extends Entity {
         //isRightOrLeft boolean var to check if player is facing left or right- used to fix glitchy animation when moving left or right b/c of uneven asset number
         boolean keyPressed = false;
         boolean isRightOrLeft = false;
+        
 
         if(keyH.upPressed == true) {
 
@@ -93,7 +95,6 @@ public class Player extends Entity {
             keyPressed = true;
 
         }
-
         
         //If player is facing left or right, set isRightOrLeft to be true - (to account for uneven number of sprites thus a glitchy appearence when moving right or left)
         if(directionOf.equals("right") || directionOf.equals("left")) {
@@ -193,5 +194,6 @@ public class Player extends Entity {
         g2.drawImage(sprite, screenX, screenY, gameWindow.tileSize, gameWindow.tileSize, null);
         
     }
+    
 
 }
