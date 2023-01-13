@@ -26,7 +26,7 @@ public class gametileManager {
         tile = new gametile[10];
         mapTileNum = new int[gameWindow.maxColumnsWorld][gameWindow.maxRowsWorld];
         getTileImage();
-        mapLoading("/res/gameMaps/mapofWorld1.txt");
+        mapLoading("/res/gameMaps/worldmap.txt");
     }
 
 
@@ -51,6 +51,7 @@ public class gametileManager {
         }
 
     }
+
 
     public void mapLoading(String filePath) { 
 

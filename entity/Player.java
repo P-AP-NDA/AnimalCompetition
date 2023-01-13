@@ -30,8 +30,8 @@ public class Player extends Entity {
 
     public void defaultValues() {
 
-        xCoordOfWorld = gameWindow.tileSize * 23;
-        yCoordOfWorld = gameWindow.tileSize * 21;
+        xCoordOfWorld = gameWindow.tileSize * 21;
+        yCoordOfWorld = gameWindow.tileSize * 23;
         speedOf = 6;
         directionOf = "down";
 
