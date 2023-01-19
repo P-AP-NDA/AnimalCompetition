@@ -6,13 +6,14 @@ import java.awt.Graphics2D;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
+
 import entity.Player;
 import gameTile.gametileManager;
 
 public class GameWindow extends JPanel implements Runnable {
     
    public final int tileSizeOrginal = 16;
-    final int scale = 3;
+   final int scale = 3;
 
     public final int tileSize = tileSizeOrginal * scale;
     public final int columns = 16;
@@ -21,7 +22,7 @@ public class GameWindow extends JPanel implements Runnable {
     public final int height = tileSize * rows;
 
     //Settings for WORLD MAP
-    public final int maxColumnsWorld = 50;
+    public final int maxColumnsWorld = 90;
     public final int maxRowsWorld = 50;
     public final int widthOfWorld = tileSize * maxColumnsWorld;
     public final int heightOfWorld = tileSize * maxRowsWorld;
@@ -38,6 +39,7 @@ public class GameWindow extends JPanel implements Runnable {
     gametileManager gametileM = new gametileManager(this);
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
+    public checkCollision collisionChecker = new checkCollision(this);
     public Player player = new Player(this, keyH);
 
     public GameWindow() {
@@ -91,6 +93,7 @@ public class GameWindow extends JPanel implements Runnable {
     
 
     public void update(){
+
 
         player.update();
     }

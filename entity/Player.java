@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-
+import java.awt.Rectangle;
 
 public class Player extends Entity {
     
@@ -23,6 +23,13 @@ public class Player extends Entity {
 
         screenX = gameWindow.width/2 - (gameWindow.tileSize/2);
         screenY = gameWindow.height/2 - (gameWindow.tileSize/2);
+
+        area = new Rectangle(0,0, gameWindow.tileSize, 48);
+        area.x = 0;
+        area.y = 16;
+        area.width = 32;
+        area.height = 32;
+
 
         defaultValues();
         getImageOfPlayer();
@@ -69,28 +76,23 @@ public class Player extends Entity {
         boolean keyPressed = false;
         boolean isRightOrLeft = false;
         
-
         if(keyH.upPressed == true) {
 
-            yCoordOfWorld -= speedOf;
             directionOf = "up";
             keyPressed = true;
             
         }else if(keyH.downPressed == true) {
 
-            yCoordOfWorld += speedOf;
             directionOf = "down";
             keyPressed = true;
 
         }else if(keyH.leftPressed == true) {
 
-            xCoordOfWorld -= speedOf;
             directionOf = "left";
             keyPressed = true;
 
         }else if(keyH.rightPressed == true) {
             
-            xCoordOfWorld += speedOf;
             directionOf = "right";
             keyPressed = true;
 
@@ -99,6 +101,34 @@ public class Player extends Entity {
         //If player is facing left or right, set isRightOrLeft to be true - (to account for uneven number of sprites thus a glitchy appearence when moving right or left)
         if(directionOf.equals("right") || directionOf.equals("left")) {
             isRightOrLeft = true;
+        }
+
+        isColliding = false;
+        gameWindow.collisionChecker.checkTile(this);
+
+        if(isColliding == false && keyPressed == true) {
+
+            switch(directionOf) { 
+
+                case "up":
+                yCoordOfWorld -= speedOf;
+                break;
+                case "down":
+                yCoordOfWorld += speedOf;
+                break;
+                case "right":
+                xCoordOfWorld += speedOf;
+                break;
+
+                case "left":
+                xCoordOfWorld -= speedOf;
+                break;
+
+            }
+
+
+
+
         }
 
         if(keyPressed == true) {
@@ -145,6 +175,7 @@ public class Player extends Entity {
 
         BufferedImage sprite = null;
 
+            
         switch(directionOf) {
 
             case "down":

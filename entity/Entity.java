@@ -2,6 +2,8 @@ package entity;
 
 import java.awt.image.BufferedImage;
 
+import java.awt.Rectangle;
+
 public class Entity {
     
     public int xCoordOfWorld, yCoordOfWorld;
@@ -12,4 +14,7 @@ public class Entity {
 
     public int countSprites = 0;
     public int spriteNumber = 1;
+
+    public Rectangle area;
+    public boolean isColliding = false;
 }
