@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
-
 import entity.Player;
 import gameTile.gametileManager;
 
@@ -36,8 +35,8 @@ public class GameWindow extends JPanel implements Runnable {
     public int playerY = 100;
     public int playerspeed = 4;
 
-    gametileManager gametileM = new gametileManager(this);
     KeyHandler keyH = new KeyHandler();
+    gametileManager gametileM = new gametileManager(this, keyH);
     Thread gameThread;
     public checkCollision collisionChecker = new checkCollision(this);
     public Player player = new Player(this, keyH);

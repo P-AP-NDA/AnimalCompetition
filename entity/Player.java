@@ -15,6 +15,7 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
+    boolean testKeyPress = false;
 
     public Player(GameWindow gameWindow, KeyHandler keyH) {
 
@@ -96,6 +97,10 @@ public class Player extends Entity {
             directionOf = "right";
             keyPressed = true;
 
+        }else if(keyH.qPressed == true) {
+
+            testKeyPress = true;
+
         }
         
         //If player is facing left or right, set isRightOrLeft to be true - (to account for uneven number of sprites thus a glitchy appearence when moving right or left)
@@ -175,7 +180,8 @@ public class Player extends Entity {
 
         BufferedImage sprite = null;
 
-            
+     if(testKeyPress == false) {
+        
         switch(directionOf) {
 
             case "down":
@@ -223,7 +229,9 @@ public class Player extends Entity {
         }
 
         g2.drawImage(sprite, screenX, screenY, gameWindow.tileSize, gameWindow.tileSize, null);
-        
+
+     }
+
     }
     
 

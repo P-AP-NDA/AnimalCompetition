@@ -1,5 +1,6 @@
 package gameTile;
 
+import main.KeyHandler;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,11 +16,12 @@ import java.awt.Graphics2D;
 public class gametileManager {
     
     GameWindow gameWindow;
+    KeyHandler keyH;
    public gametile[] tile;
    public int mapTileNum[][];
+   boolean testKeyPress = false;
 
-
-    public gametileManager(GameWindow gameWindow) {
+    public gametileManager(GameWindow gameWindow, KeyHandler keyH) {
 
         this.gameWindow = gameWindow;
 
@@ -27,6 +29,21 @@ public class gametileManager {
         mapTileNum = new int[gameWindow.maxColumnsWorld][gameWindow.maxRowsWorld];
         getTileImage();
         mapLoading("/res/gameMaps/worldmap.txt");
+    }
+
+    public void check() {
+
+     if(keyH.qPressed == true) {
+
+        testKeyPress = true;
+
+
+     }
+
+
+
+
+
     }
 
 
@@ -95,9 +112,9 @@ public class gametileManager {
 
         int worldColumns = 0;
         int worldRow = 0;
-        //boolean onMap1 = false;
+        
 
-        while(worldColumns < gameWindow.maxColumnsWorld && worldRow < gameWindow.maxRowsWorld) {
+        while(worldColumns < gameWindow.maxColumnsWorld && worldRow < gameWindow.maxRowsWorld && testKeyPress == false) {
 
             int tileNum = mapTileNum[worldColumns][worldRow];
 
