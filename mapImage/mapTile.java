@@ -1,10 +1,11 @@
-package gameTile;
+package mapImage;
 
 import java.awt.image.BufferedImage;
 
-public class gametile {
-
+public class mapTile {
+    
     public BufferedImage image;
     public boolean collision;
-    
+
 }
+
