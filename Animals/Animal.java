@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-
+import java.util.HashMap;
 import java.awt.Graphics2D;
 
 public class Animal {
@@ -20,7 +20,7 @@ public class Animal {
     private int speed;
     private String imagePath;
 
-    ArrayList<String> moveset = new ArrayList<String>();
+    ArrayList<Move> moveset = new ArrayList<Move>();
 
     private BufferedImage Image1;
 
@@ -118,11 +118,11 @@ public class Animal {
         return this.imagePath;
     }
 
-    public void setMoveList(ArrayList<String> moves) {
+    public void setMoveList(ArrayList<Move> moves) {
         this.moveset = moves;
     }
 
-    public ArrayList<String> getMoveList() {
+    public ArrayList<Move> getMoveList() {
         return moveset;
     }
 
@@ -159,6 +159,18 @@ public class Animal {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    public Move getMoveByName(String moveName) {
+
+        for(int i = 0; i < this.moveset.size(); i++) {
+
+            if(this.moveset.get(i).getMoveName() == moveName) {
+                return this.moveset.get(i);
+            }
+        }
+        return null;
 
     }
 

@@ -5,11 +5,24 @@ import java.awt.GridLayout;
 import javafx.event.ActionEvent;
 import javafx.scene.paint.Color;
 import javax.swing.*;
-import java.awt.CardLayout;
-import main.MouseListener;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 
-public class GUI extends JFrame implements ActionListener{
+import Animals.Animal;
+
+import java.awt.CardLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import Animals.Move;
+
+public class GUI extends JFrame implements ActionListener {
+
+    BattleWindow battleWindow = new BattleWindow();
+
+    JButton attack1button = new JButton(battleWindow.player.getMoveList().get(0).getMoveName());
+    JButton attack2button = new JButton(battleWindow.player.getMoveList().get(1).getMoveName());
+    JButton attack3button = new JButton(battleWindow.player.getMoveList().get(2).getMoveName());
+    JButton attack4button = new JButton(battleWindow.player.getMoveList().get(3).getMoveName());
 
 
     public GUI() {
@@ -22,15 +35,9 @@ public class GUI extends JFrame implements ActionListener{
         JPanel opponentHealthPanel = new JPanel();
         screen.setResizable(false);
         screen.setTitle("game");
-        BattleWindow battleWindow = new BattleWindow();
         CardLayout cardLayout = new CardLayout();
         GridLayout movesLayout = new GridLayout(2,3);
         GridLayout attributesLayout = new GridLayout(7, 2);
-
-        JButton attack1button = new JButton(battleWindow.player.getMoveList().get(0));
-        JButton attack2button = new JButton(battleWindow.player.getMoveList().get(1));
-        JButton attack3button = new JButton(battleWindow.player.getMoveList().get(2));
-        JButton attack4button = new JButton(battleWindow.player.getMoveList().get(3));
         JLabel healthPlayer = new JLabel("Health: "+battleWindow.player.getHealth());
         JLabel healthOpponent = new JLabel("Health: "+battleWindow.opponent.getHealth());
         JLabel defense = new JLabel("Defense: "+battleWindow.player.getDefense());
@@ -44,11 +51,10 @@ public class GUI extends JFrame implements ActionListener{
     
 
 
-        attack1button.addActionListener(e -> dialogueBox.setText(battleWindow.player.getName() + " used " + battleWindow.player.getMoveList().get(0)));
-        attack2button.addActionListener(e -> dialogueBox.setText(battleWindow.player.getName() + " used " + battleWindow.player.getMoveList().get(1)));
-        attack3button.addActionListener(e -> dialogueBox.setText(battleWindow.player.getName() + " used " + battleWindow.player.getMoveList().get(2)));
-        attack4button.addActionListener(e -> dialogueBox.setText(battleWindow.player.getName() + " used " + battleWindow.player.getMoveList().get(3)));
-        
+        attack1button.addActionListener(this);
+        attack2button.addActionListener(this);
+        attack3button.addActionListener(this);
+        attack4button.addActionListener(this);
 
         panelCont.setLayout(cardLayout);
         //panelCont.add(gameWindow, "1");
@@ -92,10 +98,35 @@ public class GUI extends JFrame implements ActionListener{
 
     }
 
+    public void battle(Animal player, Animal opponent, String move) {
+
+        int power = 0;
+        Move moveOf;
+        
+            if (player.getSpeed() > opponent.getSpeed()) {
+                moveOf = player.getMoveByName(move);
+                if(moveOf.getMoveType() == "Damage") {
+                    power = moveOf.getPower();
+                    opponent.setHealth(opponent.getHealth() - power * player.getAttack());
+                    
+                }
+            }
+
+            opponent.testPrintInformation();
+    }
+
     
     @Override
     public void actionPerformed(java.awt.event.ActionEvent e) {
-        // TODO Auto-generated method stub
+        if(e.getSource() == attack1button) {
+            battle(battleWindow.player, battleWindow.opponent, attack1button.getText());
+        }else if(e.getSource() == attack2button) {
+            battle(battleWindow.player, battleWindow.opponent, attack2button.getText());
+        }else if(e.getSource() == attack3button) {
+            battle(battleWindow.player, battleWindow.opponent, attack3button.getText());
+        }else if(e.getSource() == attack4button) {
+            battle(battleWindow.player, battleWindow.opponent, attack4button.getText());
+        }
         
     }
 }
