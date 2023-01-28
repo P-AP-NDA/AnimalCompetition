@@ -42,12 +42,12 @@ public class mapImage {
             //Create a new mapTile for background 2
             tile[1] = new mapTile();
             //Assign image 2
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/Sky.jpg"));
+            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/grassy.png"));
             
             //Create a new mapTile for background 3
             tile[2] = new mapTile();
             //Assign image 3
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/fantasy.jpg"));
+            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/sandy.png"));
             
             //Create a new mapTile for background 4
             tile[3] = new mapTile();
