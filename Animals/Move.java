@@ -2,6 +2,7 @@ package Animals;
 
 public class Move {
 
+    //Variables
     String moveType;
     String moveName;
     String traitChange = "";
@@ -9,16 +10,19 @@ public class Move {
     int traitChangeValue;
     int power;
 
-
+    //Description: Constructor method for move class
+    //@param: String moveType, String moveName, String traitChange, int power, int traitChangeValue
     public Move(String moveType, String moveName, String traitChange, int power, int traitChangeValue) {
 
         this.moveType = moveType;
         this.traitChange = traitChange;
         this.moveName = moveName;
         this.power = power;
+        this.traitChangeValue = traitChangeValue;
 
     }
 
+    //Below are setter and getter functions that set and return variables relating to the animal moves.
     public String getMoveType() {
 
         return this.moveType;
@@ -67,7 +71,7 @@ public class Move {
         this.traitChangeValue = traitChangeValue;
     }
 
-    public void getTraitChangeValue(int traitChangeValue) {
-        this.traitChangeValue = traitChangeValue;
+    public int getTraitChangeValue() {
+        return this.traitChangeValue;
     }
 }
